@@ -1,0 +1,10 @@
+wafDataset:
+  lib: custom
+  description: 'Search dataset name to be used by the Search queries. Replace it
+    with something like dataset="waf_data". Original expression to show the
+    dashboards with sample data: dataset="$vt_lookups" lookupFile="waf_data" |
+    extract type=json'
+  replacement: '"$vt_lookups" lookupFile="waf_data" | extract type=json'
+  createdBy: google-oauth2|103600523088470283110
+  modified: 1761898320079
+  created: 1758854585283

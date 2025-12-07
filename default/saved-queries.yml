@@ -1,0 +1,132 @@
+Requests_over_time:
+  name: Requests over time
+  isPrivate: true
+  query: dataset=${wafDataset} | timestats count() by action
+  earliest: -1h
+  latest: now
+  schedule:
+    enabled: false
+    cronSchedule: 0 0 * * *
+    tz: UTC
+    keepLastN: 2
+    emptyNotifications: {}
+    emptyAdvanced: {}
+    notifications:
+      disabled: true
+  user: google-oauth2|103600523088470283110
+  displayUsername: Michael Hyatt
+Top_Blocked_Requests:
+  name: Top Blocked Requests
+  isPrivate: true
+  query: dataset=${wafDataset} | where action!="ALLOW"| timestats count() by action
+  earliest: -1h
+  latest: now
+  schedule:
+    enabled: false
+    cronSchedule: 0 0 * * *
+    tz: UTC
+    keepLastN: 2
+    emptyNotifications: {}
+    emptyAdvanced: {}
+    notifications:
+      disabled: true
+  user: google-oauth2|103600523088470283110
+  displayUsername: Michael Hyatt
+Top_Blocked_Accounts_by_Terminating_Rule_Type:
+  name: Top Blocked Accounts by Terminating Rule Type
+  isPrivate: true
+  query: dataset=${wafDataset} | where action!="ALLOW"| timestats count() by
+    terminatingRuleType
+  earliest: -1h
+  latest: now
+  schedule:
+    enabled: false
+    cronSchedule: 0 0 * * *
+    tz: UTC
+    keepLastN: 2
+    emptyNotifications: {}
+    emptyAdvanced: {}
+    notifications:
+      disabled: true
+  user: google-oauth2|103600523088470283110
+  displayUsername: Michael Hyatt
+Top_10_Triggering_Rules:
+  name: Top 10_Triggering Rules
+  isPrivate: true
+  query: |-
+    dataset=${wafDataset} | where action!="ALLOW"
+    | summarize count() by terminatingRuleId, terminatingRuleType
+    | top 10 by count_
+  earliest: -1h
+  latest: now
+  schedule:
+    enabled: false
+    cronSchedule: 0 0 * * *
+    tz: UTC
+    keepLastN: 2
+    emptyNotifications: {}
+    emptyAdvanced: {}
+    notifications:
+      disabled: true
+  user: google-oauth2|103600523088470283110
+  displayUsername: Michael Hyatt
+Top_10_Requests_by_Country:
+  name: Top 10 Requests by Country
+  isPrivate: true
+  query: |-
+    dataset=${wafDataset}
+    | summarize count() by httpRequest.country
+    | top 10 by count_
+  earliest: -1h
+  latest: now
+  schedule:
+    enabled: false
+    cronSchedule: 0 0 * * *
+    tz: UTC
+    keepLastN: 2
+    emptyNotifications: {}
+    emptyAdvanced: {}
+    notifications:
+      disabled: true
+  user: google-oauth2|103600523088470283110
+  displayUsername: Michael Hyatt
+Top_10_IP_Addresses_by_Request_Volume:
+  name: Top 10 IP Addresses by Request Volume
+  isPrivate: true
+  query: |-
+    dataset=${wafDataset} 
+    | summarize count() by httpRequest.clientIp
+    | top 10 by count_
+  earliest: -1h
+  latest: now
+  schedule:
+    enabled: false
+    cronSchedule: 0 0 * * *
+    tz: UTC
+    keepLastN: 2
+    emptyNotifications: {}
+    emptyAdvanced: {}
+    notifications:
+      disabled: true
+  user: google-oauth2|103600523088470283110
+  displayUsername: Michael Hyatt
+Top_10_Request_URIs_and_Methods:
+  name: Top 10 Request URIs and Methods
+  isPrivate: false
+  query: |
+    dataset=${wafDataset} 
+    | summarize count() by httpRequest.uri, httpRequest.httpMethod
+    | top 10 by count_
+  earliest: -1h
+  latest: now
+  schedule:
+    enabled: false
+    cronSchedule: 0 0 * * *
+    tz: UTC
+    keepLastN: 2
+    emptyNotifications: {}
+    emptyAdvanced: {}
+    notifications:
+      disabled: true
+  user: google-oauth2|103600523088470283110
+  displayUsername: Michael Hyatt

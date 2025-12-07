@@ -1,0 +1,1 @@
+{"name":"cribl-search-aws-waf","version":"0.0.4","author":"mhyatt@cribl.io","description":"Search Pack with dashboards and saved searches for AWS WAF logs visualisation from an S3 bucket","displayName":"AWS WAF","tags":{"streamtags":["aws","waf"]},"exports":["*"]}
